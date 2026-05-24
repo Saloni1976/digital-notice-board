@@ -1,72 +1,98 @@
-import Navbar from "../components/Navbar";
 import { Link } from "react-router-dom";
+import Navbar from "../components/Navbar";
+
 function Home() {
+  const cards = [
+    {
+      title: "Latest Notices",
+      desc: "View department notices and announcements.",
+      path: "/notices",
+    },
+    {
+      title: "Timetable",
+      desc: "Access lecture and practical schedules.",
+      path: "/timetable",
+    },
+    {
+      title: "Staff Information",
+      desc: "Know about department faculty members.",
+      path: "/staff",
+    },
+    {
+      title: "Achievements",
+      desc: "Student and department achievements.",
+      path: "/achievements",
+    },
+    {
+      title: "Lost & Found",
+      desc: "Report and find lost items.",
+      path: "/lostfound",
+    },
+    {
+      title: "Admin Control",
+      desc: "Manage notices and department content.",
+      path: "/login",
+    },
+  ];
+
   return (
     <div>
       <Navbar />
 
-      <div
-        style={{
-          padding: "40px",
-          textAlign: "center",
-        }}
-      >
-        <h1 style={{ fontSize: "45px", color: "#0f172a" }}>
-          Digital Notice Board
-        </h1>
-
-        <p style={{ fontSize: "20px", marginTop: "15px" }}>
+      <section style={heroStyle}>
+        <h1 style={titleStyle}>Digital Notice Board</h1>
+        <p style={subtitleStyle}>
           IT Department Information & Notice Management System
         </p>
 
-        <div
-          style={{
-            marginTop: "40px",
-            display: "grid",
-            gridTemplateColumns: "repeat(3, 1fr)",
-            gap: "20px",
-          }}
-        >
-          <div style={cardStyle}>
-            <h2>Latest Notices</h2>
-            <p>View department notices and announcements.</p>
-          </div>
-
-          <div style={cardStyle}>
-            <h2>Timetable</h2>
-            <p>Access lecture and practical schedules.</p>
-          </div>
-
-          <div style={cardStyle}>
-            <h2>Staff Information</h2>
-            <p>Know about department faculty members.</p>
-          </div>
-
-          <div style={cardStyle}>
-            <h2>Achievements</h2>
-            <p>Student and department achievements.</p>
-          </div>
-
-          <div style={cardStyle}>
-            <h2>Lost & Found</h2>
-            <p>Report and find lost items.</p>
-          </div>
-
-          <div style={cardStyle}>
-            <h2>Admin Control</h2>
-            <p>Manage notices and department content.</p>
-          </div>
+        <div style={gridStyle}>
+          {cards.map((card, index) => (
+            <Link to={card.path} key={index} style={cardStyle}>
+              <h2>{card.title}</h2>
+              <p>{card.desc}</p>
+            </Link>
+          ))}
         </div>
-      </div>
+      </section>
     </div>
   );
 }
 
+const heroStyle = {
+  padding: "70px 40px",
+  textAlign: "center",
+  backgroundColor: "#f8fafc",
+  minHeight: "100vh",
+};
+
+const titleStyle = {
+  fontSize: "48px",
+  color: "#0f172a",
+  marginBottom: "15px",
+};
+
+const subtitleStyle = {
+  fontSize: "20px",
+  color: "#334155",
+  marginBottom: "45px",
+};
+
+const gridStyle = {
+  display: "grid",
+  gridTemplateColumns: "repeat(auto-fit, minmax(260px, 1fr))",
+  gap: "25px",
+  maxWidth: "1150px",
+  margin: "0 auto",
+};
+
 const cardStyle = {
   backgroundColor: "white",
-  padding: "25px",
-  borderRadius: "10px",
-  boxShadow: "0px 2px 8px rgba(0,0,0,0.1)",
+  padding: "35px 25px",
+  borderRadius: "14px",
+  boxShadow: "0 4px 12px rgba(0,0,0,0.08)",
+  textDecoration: "none",
+  color: "#0f172a",
+  transition: "0.3s",
 };
 
 export default Home;
